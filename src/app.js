@@ -7,6 +7,7 @@ const forecast = require('./utils/forecast')
 const hbs = require('hbs')
 
 const app = express()
+const port = process.env.PORT || 3000
 
 //Define paths for Express config
 const staticDir = path.join(__dirname,'../static')
@@ -67,24 +68,6 @@ app.get('/weather',(req,res)=>{
                 })    
         })
     }
-    // res.render('weather',{
-    //     title: 'Current Weather',
-    //     weather:'29 degree outside, feels like 30 degree ',
-    //     author : 'Vaishali',
-    //     address : req.query.address
-    // })
-})
-
-app.get('/products',(req,res) =>{
-    if(!req.query.p){
-      return  res.send({
-            error:'Search term not provided'
-        })
-    }
-   console.log( req.query.p);
-    res.send({
-        products :[]
-    })
 })
 
 app.get('/help/*',(req,res)=>{
@@ -103,6 +86,6 @@ app.get('*',(req,res)=>{
     })
 })
 
-app.listen(3000,()=>{
-    console.log('Server started on port 3000')
+app.listen(port,()=>{
+    console.log('Server started on port '+port)
 })
